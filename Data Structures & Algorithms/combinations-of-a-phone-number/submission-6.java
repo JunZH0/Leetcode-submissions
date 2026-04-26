@@ -1,10 +1,10 @@
 class Solution {
 
-    private String[] mappings = new String[]{
-        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" 
-    };
+    private String[] mappings = {
+        "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+        };
 
-    private List<String> res;
+    private List<String> res;    
 
     public List<String> letterCombinations(String digits) {
         res = new ArrayList<>();
@@ -13,12 +13,12 @@ class Solution {
             return res;
         }
 
-        dfs(0, "", digits);
+        backtrack(0, "", digits);
 
         return res;
     }
 
-    private void dfs(int i, String cur, String digits) {
+    private void backtrack(int i, String cur, String digits) {
         if (cur.length() == digits.length()) {
             res.add(cur);
             return;
@@ -27,7 +27,7 @@ class Solution {
         String chars = mappings[digits.charAt(i) - '0'];
 
         for (char c : chars.toCharArray()) {
-            dfs(i + 1, cur + c, digits);
+            backtrack(i + 1, cur + c, digits);
         }
     }
 }
